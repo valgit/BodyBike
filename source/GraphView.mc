@@ -41,7 +41,7 @@ class GraphView extends WatchUi.View {
 
         var width = dc.getWidth();
         var height = dc.getHeight();
-
+/*
         mTotalGraph.addItem(mSensor.data.totalHemoConcentration.toFloat());
         mCurrentGraph.addItem(mSensor.data.currentHemoPercent.toFloat());
 
@@ -122,7 +122,7 @@ class GraphView extends WatchUi.View {
             mCurrentGraph.draw(dc, [(width / 4) + 2, height / 2 + 1], [width - 3, height - 3 + 1]);
             mCurrentGraph.draw(dc, [(width / 4) + 2 + 1, height / 2 + 1], [width - 3 + 1, height - 3 + 1]);
         }
-
+*/
         // Draw the page indicator
         mIndicator.draw(dc, mIndex);
     }

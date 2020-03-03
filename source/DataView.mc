@@ -57,7 +57,7 @@ class DataView extends WatchUi.View {
 
         dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         font = mDataFont;
-        text = mSensor.data.totalHemoConcentration.format("%.2f");
+        text = mSensor.data.operatingTime.format("%i");
         fWidth = dc.getTextWidthInPixels(text, font);
         dc.drawText(width/4 - fWidth/2, marginTop + height/6, font, text, Graphics.TEXT_JUSTIFY_LEFT);
 
@@ -74,7 +74,7 @@ class DataView extends WatchUi.View {
 
         dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         font = mDataFont;
-        text = mSensor.data.eventCount.format("%i");
+        text = mSensor.data.cadenceEvent.format("%i");
         fWidth = dc.getTextWidthInPixels(text, font);
         dc.drawText((width * 3 / 4) - fWidth/2, marginTop + height/6, font, text, Graphics.TEXT_JUSTIFY_LEFT);
 
@@ -87,7 +87,7 @@ class DataView extends WatchUi.View {
 
         dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         font = mDataFont;
-        text = mSensor.data.currentHemoPercent.format("%.1f");
+        text = mSensor.data.revolutionCount.format("%i");
         fWidth = dc.getTextWidthInPixels(text, font);
         dc.drawText(width/4 - fWidth/2, marginMid + height/6, font, text, Graphics.TEXT_JUSTIFY_LEFT);
 
@@ -95,7 +95,7 @@ class DataView extends WatchUi.View {
         font = mUnitFont;
         text = "%";
         dc.drawText(width/4 + fWidth/2 + marginLeft, marginMid + height/6, font, text, Graphics.TEXT_JUSTIFY_LEFT);
-
+        /*
         //Update Previous
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         font = mHeadingFont;
@@ -108,6 +108,7 @@ class DataView extends WatchUi.View {
         text = mSensor.data.previousHemoPercent.format("%.1f");
         fWidth = dc.getTextWidthInPixels(text, font);
         dc.drawText((width * 3 / 4) - fWidth/2, marginMid + height/6, font, text, Graphics.TEXT_JUSTIFY_LEFT);
+        */
 
         dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
         font = mUnitFont;

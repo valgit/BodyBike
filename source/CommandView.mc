@@ -50,7 +50,7 @@ class CommandView extends WatchUi.View {
         fWidth = dc.getTextWidthInPixels(text, font);
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(width/2 - fWidth/2, height/3 + margin, font, text, Graphics.TEXT_JUSTIFY_LEFT);
-
+/*
         if (mSensor.data.utcTimeSet) {
             text = "Required";
             fWidth = dc.getTextWidthInPixels(text, font);
@@ -68,7 +68,7 @@ class CommandView extends WatchUi.View {
             dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
             dc.drawText(width/2 - fWidth/2, height*2/3, font, text, Graphics.TEXT_JUSTIFY_LEFT);
         }
-
+*/
         // Draw page indicator
         mIndicator.draw(dc, mIndex);
     }
