@@ -41,8 +41,8 @@ class BikePowerSensor extends Ant.GenericChannel {
 
     var data;
     var searching;
-    var pastCadenceEvent;
-    var pastRevolutionCount;
+    var pastEventCount;
+    
     var deviceCfg;
 
 	var deviceid = null;
@@ -135,7 +135,7 @@ class BikePowerSensor extends Ant.GenericChannel {
             :searchThreshold => 0} );           // Pair to all transmitting sensors
         GenericChannel.setDeviceConfig(deviceCfg);
 
-        data = new BikeData();
+        data = new BikePowerData();
         searching = true;
         //session = ActivityRecording.createSession({:name=>WatchUi.loadResource(Rez.Strings.sessionName)});
     }
@@ -145,7 +145,7 @@ class BikePowerSensor extends Ant.GenericChannel {
         // Open the channel
         GenericChannel.open();
 
-        data = new BikeData();
+        data = new BikePowerData();
         pastEventCount = 0;
         searching = true;
         /*
@@ -171,6 +171,11 @@ class BikePowerSensor extends Ant.GenericChannel {
         //session.save();
     }
 
+    function dumpPage(payload) {
+        System.println("payload :");
+        System.println(payload); // better ?
+    }
+
     function onMessage(msg) {
         if (msg.deviceNumber != null) {            
             System.println("device number: " + msg.deviceNumber + " device type: " + msg.deviceType);
@@ -182,7 +187,8 @@ class BikePowerSensor extends Ant.GenericChannel {
 
         if (Ant.MSG_ID_BROADCAST_DATA == msg.messageId) {
             System.println("broadcast msg : data page : " + (payload[0].toNumber() )); 
-    
+            // page = page & 0x7f mask page change ?
+
             if (BikePowerDataPage.PAGE_NUMBER == (payload[0].toNumber() & 0xFF)) {
                 // Were we searching?
                 if (searching) {
@@ -193,10 +199,9 @@ class BikePowerSensor extends Ant.GenericChannel {
                 var dp = new BikePowerDataPage();
                 dp.parse(msg.getPayload(), data);
                 // Check if the data has changed and we need to update the ui
-                if (pastRevolutionCount != data.revolutionCount) {
+                if (pastEventCount != data.eventCount) {
                     WatchUi.requestUpdate();
-                    pastRevolutionCount = data.revolutionCount;
-                    pastCadenceEvent = data.cadenceEvent;
+                    pastEventCount = data.eventCount;                    
 /*
                     if(session.isRecording() && (fitField != null)) {
                         fitField.setData(data.totalHemoConcentration);

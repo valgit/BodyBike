@@ -11,7 +11,7 @@ class BodyBikeApp extends Application.AppBase {
     // onStart() is called on application start up
     function onStart(state) {
         //Create the sensor object and open it
-        mSensor = new BikeSensor();
+        mSensor = new BikePowerSensor();
         mSensor.open();
     }
 

@@ -64,13 +64,13 @@ class BikeCadenceSensor extends Ant.GenericChannel {
         static const PAGE_NUMBER = 0;        
 
         function parse(payload, data) {
-            System.println("BikePowerDataPage parse payload");
+            System.println("BikeCadenceDataPage parse payload");
             //data.eventCount = parseEventCount(payload);
             data.operatingTime = parseOperatingTime(payload);
             data.cadenceEvent = parseCadence(payload);
             data.revolutionCount = parseRevolutionCount(payload);
             // TODO: rollover and better count
-            var cadence = (60 * 1024 * (revolutionCount - pastRevolutionCount))/(cadenceEvent-pastCadenceEvent);            
+            //var cadence = (60 * 1024 * (revolutionCount - pastRevolutionCount))/(cadenceEvent-pastCadenceEvent);            
         }
 
         /*
@@ -136,7 +136,8 @@ class BikeCadenceSensor extends Ant.GenericChannel {
         GenericChannel.open();
 
         data = new BikeData();
-        pastEventCount = 0;
+        pastCadenceEvent = 0;
+        pastRevolutionCount = 0;
         searching = true;
         /*
         session.start();
@@ -161,6 +162,11 @@ class BikeCadenceSensor extends Ant.GenericChannel {
         //session.save();
     }
     
+    function dumpPage(payload) {
+        System.println("payload :");
+        System.println(payload); // better ?
+    }
+
     function onMessage(msg) {
         if (msg.deviceNumber != null) {            
             System.println("device number: " + msg.deviceNumber + " device type: " + msg.deviceType);
@@ -171,8 +177,8 @@ class BikeCadenceSensor extends Ant.GenericChannel {
         var payload = msg.getPayload();
 
         if (Ant.MSG_ID_BROADCAST_DATA == msg.messageId) {
-            System.println("broadcast msg : data page : " + (payload[0].toNumber() )); 
-    
+            System.println("broadcast msg : data page : " + (payload[0].toNumber() ));     		
+    		
             if (BikeCadenceDataPage.PAGE_NUMBER == (payload[0].toNumber() & 0xFF)) {
                 // Were we searching?
                 if (searching) {
@@ -187,7 +193,7 @@ class BikeCadenceSensor extends Ant.GenericChannel {
                     WatchUi.requestUpdate();
                     pastRevolutionCount = data.revolutionCount;
                     pastCadenceEvent = data.cadenceEvent;
-                    System.println("cadence is : "+data.cadence);
+                    //System.println("cadence is : "+data.cadence);
 /*
                     if(session.isRecording() && (fitField != null)) {
                         fitField.setData(data.totalHemoConcentration);

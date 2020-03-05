@@ -41,10 +41,11 @@ class GraphView extends WatchUi.View {
 
         var width = dc.getWidth();
         var height = dc.getHeight();
-/*
-        mTotalGraph.addItem(mSensor.data.totalHemoConcentration.toFloat());
-        mCurrentGraph.addItem(mSensor.data.currentHemoPercent.toFloat());
 
+//        mTotalGraph.addItem(mSensor.data.totalHemoConcentration.toFloat());
+        //mCurrentGraph.addItem(mSensor.data.revolutionCount.toFloat());
+        mCurrentGraph.addItem(mSensor.data.instantPower.toFloat());
+/*
         if (mSensor.data.totalHemoConcentration != null) {
             var totalString = mSensor.data.totalHemoConcentration.format("%0.2f");
             var font = pickFont( dc, totalString, width / 4 );
@@ -80,9 +81,9 @@ class GraphView extends WatchUi.View {
             mTotalGraph.draw(dc, [(width / 4) + 2, 3 + 1], [width - 3, (height / 2) - 3 + 1]);
             mTotalGraph.draw(dc, [(width / 4) + 2 + 1, 3 + 1], [width - 3 + 1, (height / 2) - 3 + 1]);
         }
-
-        if (mSensor.data.currentHemoPercent != null) {
-            var currentString = mSensor.data.currentHemoPercent.format("%0.1f");
+*/
+        if (mSensor.data.instantPower != null) {
+            var currentString = mSensor.data.instantPower.format("%0.1f");
             var font = pickFont(dc, currentString, width / 4);
             var fWidth = dc.getTextWidthInPixels(currentString, font);
             var numberFHeight = dc.getFontHeight(font);
@@ -122,7 +123,7 @@ class GraphView extends WatchUi.View {
             mCurrentGraph.draw(dc, [(width / 4) + 2, height / 2 + 1], [width - 3, height - 3 + 1]);
             mCurrentGraph.draw(dc, [(width / 4) + 2 + 1, height / 2 + 1], [width - 3 + 1, height - 3 + 1]);
         }
-*/
+
         // Draw the page indicator
         mIndicator.draw(dc, mIndex);
     }

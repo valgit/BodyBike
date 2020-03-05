@@ -51,6 +51,7 @@ class DataView extends WatchUi.View {
         // Update total
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         font = mHeadingFont;
+/*
         text = "Total";
         fWidth = dc.getTextWidthInPixels(text, font);
         dc.drawText(width/4 - fWidth/2, marginTop, font, text, Graphics.TEXT_JUSTIFY_LEFT);
@@ -65,7 +66,7 @@ class DataView extends WatchUi.View {
         font = mUnitFont;
         text = "g/dl";
         dc.drawText(width/4 + fWidth/2 + marginLeft, marginTop + height/6, font, text, Graphics.TEXT_JUSTIFY_LEFT);
-
+*/
         //Update events
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         text = "Events";
@@ -74,7 +75,7 @@ class DataView extends WatchUi.View {
 
         dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         font = mDataFont;
-        text = mSensor.data.cadenceEvent.format("%i");
+        text = mSensor.data.eventCount.format("%i");
         fWidth = dc.getTextWidthInPixels(text, font);
         dc.drawText((width * 3 / 4) - fWidth/2, marginTop + height/6, font, text, Graphics.TEXT_JUSTIFY_LEFT);
 
@@ -87,14 +88,15 @@ class DataView extends WatchUi.View {
 
         dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         font = mDataFont;
-        text = mSensor.data.revolutionCount.format("%i");
+        text = mSensor.data.instantPower.format("%i");
         fWidth = dc.getTextWidthInPixels(text, font);
         dc.drawText(width/4 - fWidth/2, marginMid + height/6, font, text, Graphics.TEXT_JUSTIFY_LEFT);
-
+/*
         dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
         font = mUnitFont;
         text = "%";
         dc.drawText(width/4 + fWidth/2 + marginLeft, marginMid + height/6, font, text, Graphics.TEXT_JUSTIFY_LEFT);
+        */
         /*
         //Update Previous
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
@@ -108,13 +110,13 @@ class DataView extends WatchUi.View {
         text = mSensor.data.previousHemoPercent.format("%.1f");
         fWidth = dc.getTextWidthInPixels(text, font);
         dc.drawText((width * 3 / 4) - fWidth/2, marginMid + height/6, font, text, Graphics.TEXT_JUSTIFY_LEFT);
-        */
+        
 
         dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
         font = mUnitFont;
         text = "%";
         dc.drawText((width * 3 / 4) + fWidth/2 + marginLeft, marginMid + height/6, font, text, Graphics.TEXT_JUSTIFY_LEFT);
-
+*/
         // Draw the page indicator
         mIndicator.draw(dc, mIndex);
     }

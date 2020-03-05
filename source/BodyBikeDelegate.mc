@@ -18,7 +18,7 @@ class BodyBikeDelegate extends WatchUi.InputDelegate {
     }
 
     function onNextPage() {
-        mIndex = (mIndex + 1) % 4;
+        mIndex = (mIndex + 1) % 3; // remove command !
         WatchUi.switchToView(getView(mIndex), getDelegate(mIndex), WatchUi.SLIDE_LEFT);
     }
 
@@ -41,7 +41,7 @@ class BodyBikeDelegate extends WatchUi.InputDelegate {
 
     function onTap(evt) {
         if (mIndex == 3) {
-            mSensor.setTime();
+           // mSensor.setTime();
         }
     }
 
