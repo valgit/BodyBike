@@ -92,6 +92,8 @@ class BikePowerSensor extends Ant.GenericChannel {
         }
 
         hidden function parsePedalPower(payload) {
+            // Balance. First 6 bits are %, 7th bit indicates R if true, L if false 
+            System.println("pedal power : "+payload[2])
            return (payload[2]);
         }
 
@@ -107,6 +109,15 @@ class BikePowerSensor extends Ant.GenericChannel {
            return ((payload[6] | ((payload[7] ) << 8)));
         }
      
+        // function to calculate torque from power values
+        hidden function calculateTorque(power, cadence) {
+            if (power > 0 && cadence > 0) {
+                return power / (2 * Math.PI * cadence / 60);
+            } else {
+                return 0;
+            }
+        }
+
     }
 
 
